@@ -44,11 +44,15 @@
     <div class="mb-3">
         <label for="category_id" class="form-label">Categories</label>
         <select class="form-select form-select-md @error('category_id') 'id-invalid' @enderror" name="category_id" id="category_id">
-            <option selected>Select one</option>
+            <option value="">Uncategorized</option>
 
-            @foreach ($categories as $category)
-            <option value="{{$category->id}}">{{$category->name}}</option>
-            @endforeach
+            @forelse ($categories as $category)
+            <option value="{{$category->id}}" {{ $category->id == old('category_id', $project->category ? $project->category->id : '') ? 'selected' : ''}}>
+                {{$category->name}}
+            </option>
+            @empty
+            <option value="">Sorry, no categories in the system.</option>
+            @endforelse
         </select>
     </div>
 
