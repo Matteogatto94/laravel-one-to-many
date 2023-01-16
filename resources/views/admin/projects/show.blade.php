@@ -12,6 +12,10 @@
 @endif
 <h1>{{$project->title}}</h1>
 <h5>{{$project->slug}}</h5>
+<div class="category">
+    <strong>Category:</strong>
+    {{$project->category ? $project->category->name : 'Uncategorized'}}
+</div>
 
 <div class="content">
     {{$project->body}}
