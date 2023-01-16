@@ -40,6 +40,24 @@
         </div>
     </div>
 
+
+    <div class="mb-3">
+        <label for="category_id" class="form-label">Categories</label>
+        <select class="form-select form-select-md @error('category_id') 'id-invalid' @enderror" name="category_id" id="category_id">
+            <option selected>Select one</option>
+
+            @foreach ($categories as $category)
+            <option value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
+    </div>
+
+    @error('category_id')
+    <div class="alert alert-danger" role="alert">
+        {{$message}}
+    </div>
+    @enderror
+
     <div class="mb-3">
         <div class="mb-3">
             <label for="body" class="form-label">Body</label>
